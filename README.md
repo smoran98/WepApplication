@@ -5,7 +5,7 @@
 # ====================================
 Create a Web App in Go
 
-Create a Single Git Repo as your submission, with README and gitignore files 
+Create a Single Git Repo as your submission
 # ====================================
 
 
