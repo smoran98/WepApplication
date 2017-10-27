@@ -10,6 +10,7 @@ import (
 
 type message struct{
 	Message string
+	Guess int
 }
 
 // random numbers
@@ -58,7 +59,7 @@ func page2(w http.ResponseWriter, r *http.Request) {
 
 	t, _ := template.ParseFiles("guess.tmpl")
 
-	t.Execute(w, &message{Message:onetotwenty})
+	t.Execute(w, &message{Message:onetotwenty,Guess: guess })
 }
 
 func main() {
