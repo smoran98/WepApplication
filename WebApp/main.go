@@ -1,3 +1,6 @@
+// GO Web App
+// Shane Moran
+// G00338607
 package main
 
 import (
@@ -15,7 +18,7 @@ type message struct{
 	PrintMessage string
 }
 
-// random numbers
+// Random numbers
 func random(min, max int) int{
     rand.Seed( time.Now().UnixNano())
     return rand.Intn(max - min) + min
@@ -33,11 +36,12 @@ func page2(w http.ResponseWriter, r *http.Request) {
 	//fmt.Fprint(w, "<h1>Guessing game</h1>")
 	//http.ServeFile(w,r,"guess.tmpl")
 	mrand := random(1,20)
-	//cookies
+	
+	// 5.cookies
 	cookie, err := r.Cookie("target");
 	if err != nil {
-		// Create a cookie instance and set the cookie.
-		// You can delete the Expires line (and the time import) to make a session cookie.
+		// Create a cookie instance & set the cookie.
+		// Can delete the Expires line (and the time import) to make a session cookie.
 		cookie = &http.Cookie{
 			Name:    "target",
 			Value:   strconv.Itoa(mrand),
@@ -54,7 +58,7 @@ func page2(w http.ResponseWriter, r *http.Request) {
 
 	mss := &message{Message:onetotwenty,Guess: guess, check : false }
 
-	//this checks if the cookie is same as the guess
+	// Checks if Cookie is same as guess
 	if cVal == guess{
 
 		cookie = &http.Cookie{
