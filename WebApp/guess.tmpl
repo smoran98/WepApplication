@@ -12,7 +12,7 @@
   <body>
     <h2>{{.Message}}</h2>
     {{if .Guess}}<h2>You Guessed {{.Guess}}</h2>{{end}}
-    <form class="form-search pull-right" method="GET" action="/guess">
+    <form class="form-search pull-right" method="POST" action="/guess">
     <div class="input-append">
         <input type="number" class="guess" name="guess">
         <button type="submit" class="btn">Submit</button>
