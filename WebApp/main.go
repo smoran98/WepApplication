@@ -8,7 +8,7 @@ import (
 // Name as you wish
 func handlerFunc(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Fprint(w, "Guessing game")
+	fmt.Fprint(w, "<h1>Guessing game</h1>")
 }
 
 func main() {
