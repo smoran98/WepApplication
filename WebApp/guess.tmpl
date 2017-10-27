@@ -11,13 +11,16 @@
   </head>
   <body>
     <h2>{{.Message}}</h2>
-    <h2>You Guessed {{.Guess}}</h2>
+    {{if .Guess}}<h2>You Guessed {{.Guess}}</h2>{{end}}
     <form class="form-search pull-right" method="GET" action="/guess">
     <div class="input-append">
         <input type="number" class="guess" name="guess">
         <button type="submit" class="btn">Submit</button>
     </div>
 </form>
+ <h2>{{.PrintMessage}}</h2>
+
+ {{if .check}} <a href="/guess">New Game</a>{{end}}
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

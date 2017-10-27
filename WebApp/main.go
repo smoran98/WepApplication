@@ -11,6 +11,8 @@ import (
 type message struct{
 	Message string
 	Guess int
+	check bool
+	PrintMessage string
 }
 
 // random numbers
@@ -48,18 +50,32 @@ func page2(w http.ResponseWriter, r *http.Request) {
 	guess, _:= strconv.Atoi(r.FormValue("guess"))
 	cVal, _ := strconv.Atoi(cookie.Value)
 
+	onetotwenty :="Guess a number between 1 and 20"
+
+	mss := &message{Message:onetotwenty,Guess: guess, check : false }
+
 	//this checks if the cookie is same as the guess
 	if cVal == guess{
 
+		cookie = &http.Cookie{
+			Name:    "target",
+			Value:   strconv.Itoa(mrand),
+			Expires: time.Now().Add(72 * time.Hour),
+		}
+		http.SetCookie(w, cookie)
 
+		mss.PrintMessage = "You have won"
+		mss.check = true;
+
+	}else if guess < cVal {
+			mss.PrintMessage = "Too loww"
+	}else{
+		mss.PrintMessage = "Too Highh"
 	}
-	
-
-	onetotwenty :="Guess a number between 1 and 20"
 
 	t, _ := template.ParseFiles("guess.tmpl")
 
-	t.Execute(w, &message{Message:onetotwenty,Guess: guess })
+	t.Execute(w, mss)
 }
 
 func main() {
